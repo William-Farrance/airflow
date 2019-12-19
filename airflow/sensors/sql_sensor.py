@@ -76,8 +76,8 @@ class SqlSensor(BaseSensorOperator):
         conn = BaseHook.get_connection(self.conn_id)
 
         allowed_conn_type = {'google_cloud_platform', 'jdbc', 'mssql',
-                             'mysql', 'oracle', 'postgres',
-                             'presto', 'snowflake', 'sqlite', 'vertica'}
+                             'mysql', 'odbc', 'oracle', 'postgres',
+                             'presto', 'sqlite', 'vertica'}
         if conn.conn_type not in allowed_conn_type:
             raise AirflowException("The connection type is not supported by SqlSensor. " +
                                    "Supported connection types: {}".format(list(allowed_conn_type)))

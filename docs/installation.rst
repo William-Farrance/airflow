@@ -153,8 +153,9 @@ Here's the list of the subpackages and what they enable:
 +---------------------+-----------------------------------------------------+----------------------------------------------------------------------+
 | ldap                | ``pip install 'apache-airflow[ldap]'``              | LDAP authentication for users                                        |
 +---------------------+-----------------------------------------------------+----------------------------------------------------------------------+
-| mssql               | ``pip install 'apache-airflow[mssql]'``             | Microsoft SQL Server operators and hook,                             |
-|                     |                                                     | support as an Airflow backend                                        |
+| mssql (deprecated)  | ``pip install 'apache-airflow[mssql]'``             | Microsoft SQL Server operators and hook,                             |
+|                     |                                                     | support as an Airflow backend.  Uses pymssql.                        |
+|                     |                                                     | Will be replaced by subpackage ``odbc``.                             |
 +---------------------+-----------------------------------------------------+----------------------------------------------------------------------+
 | mysql               | ``pip install 'apache-airflow[mysql]'``             | MySQL operators and hook, support as an Airflow                      |
 |                     |                                                     | backend. The version of MySQL server has to be                       |
@@ -162,6 +163,10 @@ Here's the list of the subpackages and what they enable:
 |                     |                                                     | on version of ``mysqlclient`` package. For                           |
 |                     |                                                     | example, ``mysqlclient`` 1.3.12 can only be                          |
 |                     |                                                     | used with MySQL server 5.6.4 through 5.7.                            |
++---------------------+-----------------------------------------------------+----------------------------------------------------------------------+
+| odbc                | ``pip install 'apache-airflow[odbc]'``              | ODBC data sources including MS SQL Server.  Can use MsSqlOperator,   |
+|                     |                                                     | or as metastore database backend.  Uses pyodbc.                      |
+|                     |                                                     | See :ref:`howto/connection/odbc` for more info.                      |
 +---------------------+-----------------------------------------------------+----------------------------------------------------------------------+
 | oracle              | ``pip install 'apache-airflow[oracle]'``            | Oracle hooks and operators                                           |
 +---------------------+-----------------------------------------------------+----------------------------------------------------------------------+

@@ -315,6 +315,9 @@ mssql = [
 mysql = [
     'mysqlclient>=1.3.6,<1.4',
 ]
+odbc = [
+    'pyodbc',
+]
 oracle = [
     'cx_Oracle>=5.1.2, <8.0;python_version<"3.0"',
     'cx_Oracle>=5.1.2;python_version>="3.0"',
@@ -448,6 +451,7 @@ else:
 
 devel_minreq = aws + cgroups + devel + doc + kubernetes + mysql + password
 devel_hadoop = devel_minreq + hdfs + hive + kerberos + presto + webhdfs
+<<<<<<< HEAD
 devel_azure = azure_cosmos + azure_data_lake + devel_minreq
 devel_all = (all_dbs + atlas + aws +
              azure_blob_storage + azure_container_instances + azure_cosmos + azure_data_lake +
@@ -458,6 +462,15 @@ devel_all = (all_dbs + atlas + aws +
              virtualenv + webhdfs + zendesk)
 
 # Snakebite is not Python 3 compatible :'(
+=======
+devel_all = (all_dbs + atlas + aws + azure + celery + cgroups + datadog + devel +
+             doc + docker + druid + elasticsearch + gcp + grpc + jdbc + jenkins +
+             kerberos + kubernetes + ldap + odbc + oracle + pagerduty + papermill +
+             password + pinot + redis + salesforce + samba + segment + sendgrid +
+             sentry + slack + snowflake + ssh + virtualenv + webhdfs + zendesk)
+
+# Snakebite & Google Cloud Dataflow are not Python 3 compatible :'(
+>>>>>>> fd7c67194... [AIRFLOW-6296] add OdbcHook & deprecation warning for pymssql
 if PY3:
     package_to_excludes = ['snakebite>=2.7.8', 'snakebite[kerberos]>=2.7.8']
     if PY38:
@@ -517,7 +530,9 @@ EXTRAS_REQUIREMENTS = {
     'mongo': mongo,
     'mssql': mssql,
     'mysql': mysql,
+    'odbc': odbc,
     'oracle': oracle,
+    'pagerduty': pagerduty,
     'papermill': papermill,
     'password': password,
     'pinot': pinot,
@@ -635,7 +650,6 @@ def do_setup():
             'setuptools',
             'wheel',
         ],
-        extras_require=EXTRAS_REQUIREMENTS,
         classifiers=[
             'Development Status :: 5 - Production/Stable',
             'Environment :: Console',

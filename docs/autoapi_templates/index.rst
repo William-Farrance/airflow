@@ -90,6 +90,39 @@ All hooks are in the following packages:
 
   airflow/contrib/hooks/index
 
+  airflow/gcp/hooks/index
+
+  airflow/providers/amazon/aws/hooks/index
+
+  airflow/providers/google/cloud/hooks/index
+
+  airflow/providers/google/marketing_platform/hooks/index
+
+  airflow/providers/google/cloud/hooks/index
+
+  airflow/providers/apache/cassandra/hooks/index
+
+  airflow/providers/apache/druid/hooks/index
+
+  airflow/providers/apache/hdfs/hooks/index
+
+  airflow/providers/apache/hdfs/hooks/index
+
+  airflow/providers/apache/hive/hooks/index
+
+  airflow/providers/apache/pig/hooks/index
+
+  airflow/providers/apache/pinot/hooks/index
+
+  airflow/providers/apache/spark/hooks/index
+
+  airflow/providers/apache/sqoop/hooks/index
+
+  airflow/providers/microsoft/azure/hooks/index
+
+  airflow/providers/odbc/hooks/index
+
+  airflow/providers/sftp/hooks/index
 
 Executors
 ---------
