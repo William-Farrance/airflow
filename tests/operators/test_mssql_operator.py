@@ -23,7 +23,7 @@ from parameterized import parameterized
 from airflow.hooks.mssql_hook import MsSqlHook
 from airflow.models import Connection
 from airflow.operators.mssql_operator import MsSqlOperator
-from airflow.providers.odbc.hooks.odbc import OdbcHook
+from airflow.hooks.odbc_hook import OdbcHook
 
 ODBC_CONN = Connection(conn_id='test-odbc', conn_type='odbc', )
 PYMSSQL_CONN = Connection(conn_id='test-pymssql', conn_type='anything', )

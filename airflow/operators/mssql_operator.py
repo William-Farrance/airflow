@@ -20,7 +20,7 @@
 from airflow import AirflowException
 from airflow.hooks.mssql_hook import MsSqlHook
 from airflow.models import BaseOperator
-from airflow.providers.odbc.hooks.odbc import OdbcHook
+from airflow.hooks.odbc_hook import OdbcHook
 from airflow.utils.decorators import apply_defaults
 
 
