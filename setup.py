@@ -461,7 +461,6 @@ devel_all = (all_dbs + atlas + aws +
              virtualenv + webhdfs + zendesk)
 
 # Snakebite is not Python 3 compatible :'(
-=======
 devel_all = (all_dbs + atlas + aws + azure + celery + cgroups + datadog + devel +
              doc + docker + druid + elasticsearch + gcp + grpc + jdbc + jenkins +
              kerberos + kubernetes + ldap + odbc + oracle + pagerduty + papermill +
