@@ -451,7 +451,6 @@ else:
 
 devel_minreq = aws + cgroups + devel + doc + kubernetes + mysql + password
 devel_hadoop = devel_minreq + hdfs + hive + kerberos + presto + webhdfs
-<<<<<<< HEAD
 devel_azure = azure_cosmos + azure_data_lake + devel_minreq
 devel_all = (all_dbs + atlas + aws +
              azure_blob_storage + azure_container_instances + azure_cosmos + azure_data_lake +
