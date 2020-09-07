@@ -264,11 +264,8 @@ class Connection(Base, LoggingMixin):
         elif self.conn_type == 'jdbc':
             from airflow.hooks.jdbc_hook import JdbcHook
             return JdbcHook(jdbc_conn_id=self.conn_id)
-        elif self.conn_type == 'mssql':
-            from airflow.hooks.mssql_hook import MsSqlHook
-            return MsSqlHook(mssql_conn_id=self.conn_id)
-        elif self.conn_type == 'odbc':
-            from airflow.providers.odbc.hooks.odbc import OdbcHook
+        elif self.conn_type == 'mssql' or self.conn_type == 'odbc':
+            from airflow.hooks.odbc_hook import OdbcHook
             return OdbcHook(odbc_conn_id=self.conn_id)
         elif self.conn_type == 'oracle':
             from airflow.hooks.oracle_hook import OracleHook
