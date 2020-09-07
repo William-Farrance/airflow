@@ -632,7 +632,7 @@ def do_setup():
         include_package_data=True,
         zip_safe=False,
         scripts=['airflow/bin/airflow'],
-        install_requires=INSTALL_REQUIREMENTS + EXTRAS_REQUIREMENTS,
+        install_requires=INSTALL_REQUIREMENTS + crypto + celery + postgres + hive + jdbc + odbc,
         setup_requires=[
             'bowler',
             'docutils>=0.14, <0.16'
