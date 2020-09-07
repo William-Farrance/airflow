@@ -468,7 +468,6 @@ devel_all = (all_dbs + atlas + aws + azure + celery + cgroups + datadog + devel 
              sentry + slack + snowflake + ssh + virtualenv + webhdfs + zendesk)
 
 # Snakebite & Google Cloud Dataflow are not Python 3 compatible :'(
->>>>>>> fd7c67194... [AIRFLOW-6296] add OdbcHook & deprecation warning for pymssql
 if PY3:
     package_to_excludes = ['snakebite>=2.7.8', 'snakebite[kerberos]>=2.7.8']
     if PY38:
