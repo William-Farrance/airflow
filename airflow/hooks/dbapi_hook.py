@@ -283,7 +283,13 @@ class DbApiHook(BaseHook):
                     sql = self._generate_insert_sql(
                         table, values, target_fields, replace, **kwargs
                     )
-                    self.log.info(f"About to insert sql, {sql} with values {values} in {table}")
+                    self.log.info(f"cur is: {cur}")
+                    self.log.info(f"About to insert sql, {sql} "
+                                  f""
+                                  f"with values {values} "
+                                  f""
+                                  f"in {table}")
+                    self.log.info(f"")
                     cur.execute(sql, values)
                     if commit_every and i % commit_every == 0:
                         conn.commit()
