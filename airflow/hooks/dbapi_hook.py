@@ -113,8 +113,11 @@ class DbApiHook(BaseHook):
             sql = sql.encode('utf-8')
 
         with closing(self.get_conn()) as conn:
+            print(f"db hook conn is {conn}")
             with closing(conn.cursor()) as cur:
+                print(f"db hook cur is {cur}")
                 if parameters is not None:
+                    print(f"db sql and parameters are: {sql}, {parameters}")
                     cur.execute(sql, parameters)
                 else:
                     cur.execute(sql)
