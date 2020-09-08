@@ -219,6 +219,7 @@ class OdbcHook(DbApiHook):
         cnx = engine.connect(**(connect_kwargs or {}))
         return cnx
 
+    @staticmethod
     def _generate_insert_sql(table, values, target_fields, replace, **kwargs):
         """
         Static helper method that generate the INSERT SQL statement.
