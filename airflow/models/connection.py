@@ -109,6 +109,7 @@ class Connection(Base, LoggingMixin):
         ('grpc', 'GRPC Connection'),
         ('yandexcloud', 'Yandex Cloud'),
         ('spark', 'Spark'),
+        ('odbc', 'ODBC')
     ]
 
     def __init__(
@@ -264,7 +265,7 @@ class Connection(Base, LoggingMixin):
         elif self.conn_type == 'jdbc':
             from airflow.hooks.jdbc_hook import JdbcHook
             return JdbcHook(jdbc_conn_id=self.conn_id)
-        elif self.conn_type == 'mssql' or self.conn_type == 'odbc':
+        elif self.conn_type == 'odbc':
             from airflow.hooks.odbc_hook import OdbcHook
             return OdbcHook(odbc_conn_id=self.conn_id)
         elif self.conn_type == 'oracle':
