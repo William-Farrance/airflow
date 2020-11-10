@@ -72,12 +72,14 @@ class BaseXCom(Base, LoggingMixin):
             self.value = pickle.loads(self.value)
         else:
             try:
+                log.error("Loading XCOM JSON on init for {desc}.".format(desc=self))
                 self.value = json.loads(self.value.decode('UTF-8'))
             except (UnicodeEncodeError, ValueError):
                 # For backward-compatibility.
                 # Preventing errors in webserver
                 # due to XComs mixed with pickled and unpickled.
                 self.value = pickle.loads(self.value)
+                log.error("Failed to load XCOM JSON on init for {desc}, treating as pickle".format(desc=self))
 
     def __repr__(self):
         return '<XCom "{key}" ({task_id} @ {execution_date})>'.format(
@@ -169,6 +171,9 @@ class BaseXCom(Base, LoggingMixin):
                               "for XCOM, then you need to enable pickle "
                               "support for XCOM in your airflow config.")
                     raise
+                except UnicodeDecodeError:
+                    log.error("Could not decode the XCOM value from JSON for {desc}".format(desc=self))
+                    raise
 
     @classmethod
     @provide_session
@@ -231,6 +236,9 @@ class BaseXCom(Base, LoggingMixin):
                       "If you are using pickles instead of JSON "
                       "for XCOM, then you need to enable pickle "
                       "support for XCOM in your airflow config.")
+            raise
+        except UnicodeDecodeError:
+            log.error("Could not encode XCOM value to JSON for {desc}".format(desc=self)
             raise
 
 
