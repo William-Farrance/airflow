@@ -170,7 +170,7 @@ class BaseXCom(Base, LoggingMixin):
                 return pickle.loads(result.value)
             else:
                 try:
-                    log.info("Decoding XCOM value from JSON for {desc}".format(desc=self))
+                    log.info("Decoding XCOM value from JSON for {task_id}, {dag_id}, {execution_date}".format(task_id=task_id, dag_id=dag_id, execution_date=execution_date))
                     return json.loads(result.value.decode('UTF-8'))
                 except ValueError:
                     log.error("Could not deserialize the XCOM value from JSON. "
@@ -179,7 +179,7 @@ class BaseXCom(Base, LoggingMixin):
                               "support for XCOM in your airflow config.")
                     raise
                 except UnicodeDecodeError:
-                    log.error("Could not decode the XCOM value from JSON for {desc}".format(desc=self))
+                    log.error("Could not decode the XCOM value from JSON for {task_id}, {dag_id}, {execution_date}".format(task_id=task_id, dag_id=dag_id, execution_date=execution_date))
                     raise
 
     @classmethod
