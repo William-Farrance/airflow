@@ -104,7 +104,13 @@ class BaseXCom(Base, LoggingMixin):
         """
         session.expunge_all()
 
-        value = XCom.serialize_value(value)
+        try:
+            log.error("Dumping XCOM value to JSON for {task_id}, {dag_id}, {execution_date}".format(task_id=task_id, dag_id=dag_id, execution_date=execution_date))
+            value = XCom.serialize_value(value)
+        except UnicodeDecodeError:
+            log.error("Failed to dump XCOM value to JSON for {task_id}, {dag_id}, {execution_date}".format(task_id=task_id, dag_id=dag_id, execution_date=execution_date))
+            raise
+
 
         # remove any duplicate XComs
         session.query(cls).filter(
@@ -230,7 +236,6 @@ class BaseXCom(Base, LoggingMixin):
             return pickle.dumps(value)
 
         try:
-            log.error("Dumping XCOM value to JSON for {desc}".format(desc=self))
             return json.dumps(value).encode('UTF-8')
         except ValueError:
             log.error("Could not serialize the XCOM value into JSON. "
@@ -238,10 +243,6 @@ class BaseXCom(Base, LoggingMixin):
                       "for XCOM, then you need to enable pickle "
                       "support for XCOM in your airflow config.")
             raise
-        except UnicodeDecodeError:
-            log.error("Could not encode XCOM value to JSON for {desc}".format(desc=self))
-            raise
-
 
 def resolve_xcom_backend():
     """Resolves custom XCom class"""
