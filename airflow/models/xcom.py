@@ -230,6 +230,7 @@ class BaseXCom(Base, LoggingMixin):
             return pickle.dumps(value)
 
         try:
+            log.error("Dumping XCOM value to JSON for {desc}".format(desc=self))
             return json.dumps(value).encode('UTF-8')
         except ValueError:
             log.error("Could not serialize the XCOM value into JSON. "
