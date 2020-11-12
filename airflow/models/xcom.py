@@ -105,7 +105,7 @@ class BaseXCom(Base, LoggingMixin):
         session.expunge_all()
 
         try:
-            log.error("Dumping XCOM value to JSON for {task_id}, {dag_id}, {execution_date}".format(task_id=task_id, dag_id=dag_id, execution_date=execution_date))
+            log.info("Dumping XCOM value to JSON for {task_id}, {dag_id}, {execution_date}".format(task_id=task_id, dag_id=dag_id, execution_date=execution_date))
             value = XCom.serialize_value(value)
         except UnicodeDecodeError:
             log.error("Failed to dump XCOM value to JSON for {task_id}, {dag_id}, {execution_date}".format(task_id=task_id, dag_id=dag_id, execution_date=execution_date))
