@@ -170,6 +170,7 @@ class BaseXCom(Base, LoggingMixin):
                 return pickle.loads(result.value)
             else:
                 try:
+                    log.info("Decoding XCOM value from JSON for {desc}".format(desc=self))
                     return json.loads(result.value.decode('UTF-8'))
                 except ValueError:
                     log.error("Could not deserialize the XCOM value from JSON. "
