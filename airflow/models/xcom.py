@@ -238,7 +238,7 @@ class BaseXCom(Base, LoggingMixin):
                       "support for XCOM in your airflow config.")
             raise
         except UnicodeDecodeError:
-            log.error("Could not encode XCOM value to JSON for {desc}".format(desc=self)
+            log.error("Could not encode XCOM value to JSON for {desc}".format(desc=self))
             raise
 
 
