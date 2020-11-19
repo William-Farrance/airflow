@@ -78,8 +78,8 @@ class BaseXCom(Base, LoggingMixin):
                 # For backward-compatibility.
                 # Preventing errors in webserver
                 # due to XComs mixed with pickled and unpickled.
-                self.value = pickle.loads(self.value)
                 log.error("Failed to load XCOM JSON on init for {desc}, treating as pickle".format(desc=self))
+                self.value = pickle.loads(self.value)
 
     def __repr__(self):
         return '<XCom "{key}" ({task_id} @ {execution_date})>'.format(
